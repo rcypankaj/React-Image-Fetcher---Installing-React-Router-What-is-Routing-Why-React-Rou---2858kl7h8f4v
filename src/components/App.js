@@ -59,7 +59,7 @@ const App = () => {
 
       console.log(data);
     };
-    if (apiData.id !== null) {
+    if (apiData.id !== null && apiData.id !== "") {
       fetchData();
     }
   }, [apiData.id]);
@@ -71,11 +71,10 @@ const App = () => {
     <>
       <label htmlFor="idNumber">Id number</label>
       <input id="idNumber" type="number" onChange={inputChangeHandler} />
-      {apiData.id !== null && !apiData.isLoading ? (
+      {apiData.id !== null && !apiData.isLoading && (
         <PhotoFrame url={apiData.url} title={apiData.title} />
-      ) : (
-        <Loader />
       )}
+      {apiData.isLoading && <Loader />}
     </>
   );
 };
